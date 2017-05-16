@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dormitory.Dao.CheckcodeMapper">
+    <select id="selectCheckcodeById" parameterType="java.lang.Integer" resultType="com.dormitory.model.po.Checkcode">
+        SELECT * FROM checkcode WHERE id=#{id}
+    </select>
+
+    <select id="selectCheckcodeWhenRegister" resultType="com.dormitory.model.po.Checkcode">
+        SELECT * FROM checkcode WHERE user_type=#{user_type} AND use_state="0"
+    </select>
+
+    <update id="updateCheckcodeState">
+        UPDATE checkcode SET use_state=#{use_state} WHERE id=#{id}
+    </update>
+
+    <insert id="insertCheckcode" parameterType="com.dormitory.model.po.Checkcode">
+        INSERT INTO checkcode(checkcode,user_type,use_state) VALUE (#{checkcode},#{user_type},"0 ")
+    </insert>
+
+    <select id="selectCheckcodeByStateAndUserType" resultType="com.dormitory.model.po.Checkcode">
+        SELECT * FROM checkcode WHERE user_type=#{user_type} AND use_state="1"
+    </select>
+</mapper>

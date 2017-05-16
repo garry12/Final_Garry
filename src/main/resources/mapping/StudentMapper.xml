@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dormitory.Dao.StudentMapper">
+    <select id="selectStuById" parameterType="java.lang.Long" resultType="com.dormitory.model.po.Student">
+        SELECT * FROM students WHERE id=#{id}
+    </select>
+
+    <select id="selectStuByUsername" parameterType="java.lang.String" resultType="com.dormitory.model.po.Student">
+        SELECT * FROM students WHERE username=#{username}
+    </select>
+
+    <select id="selectAllStu" resultType="com.dormitory.model.po.Student">
+        SELECT  * FROM students
+    </select>
+
+    <insert id="insertStudent" parameterType="com.dormitory.model.po.Student">
+        INSERT INTO students(username,name,password,sex,flatnum,dormnum,telephone,email)
+        VALUES(#{username},#{name},#{password},#{sex},#{flatnum},#{dormnum},#{telephone},#{email})
+    </insert>
+
+    <delete id="deleteStudent" parameterType="java.lang.String">
+        DELETE FROM students WHERE username=#{username}
+    </delete>
+
+    <update id="updateStudent" parameterType="com.dormitory.model.po.Student">
+        UPDATE students SET name=#{name},flatnum=#{flatnum},dormnum=#{dormnum},telephone=#{telephone},email=#{email}
+        WHERE username=#{username}
+    </update>
+
+    <select id="selectStuIDByUsername" parameterType="java.lang.String" resultType="java.lang.Integer">
+        SELECT  id FROM students WHERE username=#{name}
+    </select>
+</mapper>
